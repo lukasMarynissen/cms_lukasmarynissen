@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}Nieuwe klant registreren{% endblock %}
+
+
+
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-user-plus">
+                                    </i>
+                                </div>
+                                <div>Nieuwe medewerker toevoegen
+                                    <div class="page-title-subheading">Hier kan u een nieuwe medewerker registreren.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                            <div class="errors">
+                                {{ form_errors(form) }}
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        {{ form_label(form.name, "Naam") }}
+                                        {{ form_widget(form.name) }}
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        {{ form_label(form.first_name, "Voornaam") }}
+                                        {{ form_widget(form.first_name) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.email, "Emailadres") }}
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.password, "Wachtwoord") }}
+                                {{ form_widget(form.password) }}
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.subcontractor, "Is onderaannemer") }}
+                                {{ form_widget(form.subcontractor, {'label' : "Dit is een onderaannemer"}) }}
+                            </div>
+                            {{ form_row(form.save, { 'label': 'Nieuwe medewerker opslaan' }) }}
+                            {{ form_end(form) }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

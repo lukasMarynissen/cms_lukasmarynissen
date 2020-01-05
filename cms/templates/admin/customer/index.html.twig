@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}This is the admin index page{% endblock %}
+
+
+
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' with {'username': 'username'} %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-users">
+                                    </i>
+                                </div>
+                                <div>Alle klanten
+                                    <div class="page-title-subheading">Hieronder ziet u een lijst van alle huidige klanten.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-card mb-3 card">
+                        <ul class="list-group">
+                            {% for customer in customers %}
+                                <a href="{{ path('admin-customer-detail', {'id': customer.id}) }}"><button class="list-group-item-action list-group-item"><div class="col-md-6">{{ customer.name }} {{ customer.firstname }}</div><div class="col-md-6">{{ customer.companyname }}</div></button></a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <a href="{{ path('admin-customer-new') }}"><button class="mb-2 mr-2 btn btn-primary">Nieuwe klant toevoegen</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

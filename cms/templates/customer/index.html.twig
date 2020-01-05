@@ -1,0 +1,41 @@
+{% extends 'base-customer.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}Klantenportaal{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {% include 'partials/customerHeader.html.twig' %}
+
+        <div class="app">
+
+            {% include 'partials/customerSidebar.html.twig' %}
+            <div class="app-content">
+                <div class="row">
+                    <div class="">
+                        <div class="page-title">
+                            <h3>Aangemaakte periodes</h3>
+                        </div>
+
+                        <div class="activities">
+                                {% if periods %}
+                                    {% for period in periods %}
+                                        {% include 'partials/customer-period-bar.html.twig' with {'period': period} %}
+                                    {% endfor %}
+                                {%  endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

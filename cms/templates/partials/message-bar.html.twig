@@ -1,0 +1,29 @@
+<tr>
+    <td>
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ message.sender.companyname }}</div>
+
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="">
+        {{ message.content[:35] ~ '...' }}
+    </td>
+    <td>
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ message.createdat |date("d/m/Y") }}</div>
+                    <div class="widget-subheading opacity-7"> </div>
+                </div>
+            </div>
+        </div>
+    </td>
+
+    <td class="text-center">
+        <a href="{{ path('admin-message-detail', {'id': message .id}) }}"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Bekijken</button></a>
+    </td>
+</tr>

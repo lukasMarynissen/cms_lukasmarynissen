@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}This is the admin index page{% endblock %}
+
+
+
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' with {'username': 'username'} %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                                    </i>
+                                </div>
+                                <div>Analytics Dashboard
+                                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

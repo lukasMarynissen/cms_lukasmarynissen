@@ -1,0 +1,20 @@
+
+<div class="activity-bar">
+    <div class="activity-bar-title">
+        <p>{{activity.activitydescription}}</p>
+    </div>
+    <div class="activity-bar-content">
+        <div>
+            <p class="text-light">personeelslid</p>
+            <p>{{ activity.user.firstname }} {{ activity.user.name }}</p>
+        </div>
+        <div>
+            <p class="text-light">{{ activity.starttime |date("d/m/Y") }}</p>
+            <p>{{ activity.starttime |date("H:i:s") }} tot {{ activity.endtime |date("H:i:s") }}</p>
+        </div>
+        <div>
+            <p class="text-light">Uurkost: &euro;{{ activity.cost }}</p>
+            <p>Transport: &euro;{{ activity.transportcost }}</p>
+        </div>
+    </div>
+</div>

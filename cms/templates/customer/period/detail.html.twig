@@ -1,0 +1,116 @@
+{% extends 'base-customer.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Klantenportaal{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {% include 'partials/customerHeader.html.twig' %}
+
+        <div class="app">
+            {% include 'partials/customerSidebar.html.twig' %}
+            <div class="app-content">
+                <div class="row">
+                    <div class="">
+                        <div class="page-title">
+                            <h3>Periode van {{ period.starttime | date("d-m-Y") }} tot {{ period.endtime | date("d-m-Y")  }}</h3>
+                        </div>
+                        <div class="activities">
+                                {% for activity in activities %}
+                                    {% include 'partials/customer-period-activity-bar.html.twig' with {'activity': activity} %}
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fullwidth totalHours">
+                    <div class="">
+                        <p>Totale uurkost: </p>
+                        <p class="card-text-large">&euro;{{totalHourlyCost}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Totale transportkost: </p>
+                        <p class="card-text-large">&euro;{{totalTransportCost}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Totale kost: </p>
+                        <p class="card-text-large">&euro;{{totalCost}}</p>
+                    </div>
+
+
+
+                </div>
+
+                {% if comments %}
+                    <div class="card-title floating-title">
+                        <p>Opmerkingen</p>
+                    </div>
+
+                    {% for comment in comments %}
+                        <div class="main-card mb-3 card comment">
+                            <div class="card-header comment-header">
+                                <p>{{comment.author.firstname}} {{comment.author.name}}</p>
+                                <p>schreef op {{comment.createdat | date("d/m/Y")}} :</p>
+                                <br />
+
+                            </div>
+
+                            <div class="widget-content comment-content">
+                               <p>{{comment.content}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
+
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                        <div class="errors">
+                            {{ form_errors(form) }}
+                        </div>
+
+                        <div class="position-relative form-group hidden">
+                            {{ form_label(form.created_at, "Opmerking toevoegen") }}
+                            {{ form_widget(form.created_at) }}
+                        </div>
+
+                        <div class="position-relative form-group comment">
+                            {{ form_label(form.content, "Opmerking toevoegen") }}
+                            {{ form_widget(form.content) }}
+                        </div>
+
+                        <div class="position-relative form-group hidden">
+                            {{ form_label(form.author, "Reactie") }}
+                            {{ form_widget(form.author) }}
+                        </div>
+
+                        <div class="position-relative form-group hidden">
+                            {{ form_label(form.period, "Reactie") }}
+                            {{ form_widget(form.period) }}
+                        </div>
+
+
+
+                        {{ form_row(form.save, { 'label': 'bericht versturen' }) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <a href="{{ path('customer-period-confirm', {'id': period.id}) }}"><button class=" detailButton {% if period.confirmed %} btn-warning {% else %} btn-primary {% endif %}">{% if period.confirmed %} Bevestiging ongedaan maken {% else %} Periode bevestigen {% endif %}</button></a>
+                    <a href="{{ path('customer-period-detail-xls', {'id': period.id}) }}"><button class="detailButton" >Xls downloaden</button></a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

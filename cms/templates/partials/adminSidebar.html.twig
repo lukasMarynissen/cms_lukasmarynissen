@@ -1,0 +1,79 @@
+<div class="app-sidebar sidebar-shadow">
+    <div class="app-header__logo">
+        <div class="logo-src"></div>
+        <div class="header__pane ml-auto">
+            <div>
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="app-header__mobile-menu">
+        <div>
+            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+    </div>    <div class="scrollbar-sidebar">
+        <div class="app-sidebar__inner">
+            <ul class="vertical-nav-menu">
+                <li class="app-sidebar__heading">Overzicht</li>
+                <li>
+                    <a href="{{ path('admin-activities') }}" class="mm-active">
+                        <i class="fas fa-calendar-alt"></i>
+                        Weekoverzicht
+                    </a>
+                    <a href="{{ path('admin-periods') }}" class="mm-active">
+                        <i class="fas fa-calendar-week"></i>
+                        Recente Periodes
+                    </a>
+                    <a href="{{ path('admin-period-new') }}" class="mm-active">
+                        <i class="fas fa-calendar-plus"></i>
+                        Periode aanmaken
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Klanten</li>
+                <li>
+                    <a href="{{ path('admin-customer-index') }}" class="mm-active">
+                        <i class="fas fa-users"></i>
+                        Klanten
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('admin-customer-new') }}" class="mm-active">
+                        <i class="fas fa-user-plus"></i>
+                        Klant Toevoegen
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Medewerkers</li>
+                <li>
+                    <a href="{{ path('admin-worker-index') }}" class="mm-active">
+                        <i class="fas fa-users-cog"></i>
+                        Medewerkers
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('admin-worker-new') }}" class="mm-active">
+                        <i class="fas fa-user-cog"></i>
+                        Medewerker Toevoegen
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Account</li>
+            </ul>
+        </div>
+    </div>
+</div>

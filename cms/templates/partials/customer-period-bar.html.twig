@@ -1,0 +1,47 @@
+<!--<tr>
+    <td>
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ period.starttime |date("d/m/Y") }} tot {{ period.endtime |date("d/m/Y") }}</div>
+                    <div class="widget-subheading opacity-7"> </div>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="text-center">
+        {%  if period.confirmed %}
+            <div class="badge badge-success">Bevestigd</div>
+        {% elseif period.published  %}
+            <div class="badge badge-warning">Te Bevestigen</div>
+        {% else %}
+            <div class="badge badge-danger">Niet gepubliceerd</div>
+        {% endif %}
+
+    </td>
+    <td class="text-center">
+        <a href="{{ path('customer-period-detail', {'id': period.id}) }}"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button></a>
+    </td>
+</tr>
+-->
+
+<div class="activity-bar">
+    <div class="activity-bar-title">
+        <p>periode van {{ period.starttime |date("d/m/Y") }} tot {{ period.endtime |date("d/m/Y") }}</p>
+    </div>
+    <div class="activity-bar-content">
+        <div>
+            <p class="text-light">status</p>
+            {%  if period.confirmed %}
+                <div class="badge badge-success"><p>Bevestigd</p></div>
+            {% elseif period.published  %}
+                <div class="badge badge-warning"><p>Te Bevestigen</p></div>
+            {% else %}
+                <div class="badge badge-danger"><p>Niet gepubliceerd</p></div>
+            {% endif %}
+        </div>
+        <div>
+            <a href="{{ path('customer-period-detail', {'id': period.id}) }}"><button type="button" class="customer-detail-button">Details</button></a>
+        </div>
+    </div>
+</div>

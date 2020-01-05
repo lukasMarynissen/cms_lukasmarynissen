@@ -1,0 +1,34 @@
+<tr>
+    <td>
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ activity.customer.companyName }}</div>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td>
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ activity.starttime |date("d/m/Y") }}</div>
+                    <div class="widget-subheading opacity-7">{{ activity.starttime |date("H:i:s") }} tot {{ activity.endtime |date("H:i:s") }} </div>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="">
+        <div class="widget-content p-0">
+            <div class="widget-content-wrapper">
+                <div class="widget-content-left flex2">
+                    <div class="widget-heading">Uurkost: &euro;{{ activity.cost }}</div>
+                    <div class="widget-subheading opacity-7">Transport: &euro;{{ activity.transportcost }} </div>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="text-center">
+        <a href="{{ path('admin-activity-detail', {'id': activity.id}) }}"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button></a>
+    </td>
+</tr>

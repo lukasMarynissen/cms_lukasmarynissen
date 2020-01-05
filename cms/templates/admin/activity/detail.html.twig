@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Activiteit{% endblock %}
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-user">
+                                    </i>
+                                </div>
+                                <div>Activiteit
+                                    <div class="page-title-subheading">Detailpagina
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Datum</div>
+                                            <div class="widget-subheading">{{activity.weekday}} {{ activity.starttime | date("d-m-Y") }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Werknemer</div>
+                                            <a href="{{ path('admin-worker-detail', {'id': activity.user.id}) }}"><div class="widget-subheading">{{activity.user.firstname}} {{activity.user.name}}</div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Klant</div>
+                                            <a href="{{ path('admin-customer-detail', {'id': activity.customer.id}) }}"><div class="widget-subheading">{{activity.customer.companyname}}</div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Gewerkte uren</div>
+                                            <div class="widget-subheading">{{activity.hours}} uren</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Pauze</div>
+                                            <div class="widget-subheading">{{activity.breaklength}} minuten</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Transport</div>
+                                            <div class="widget-subheading">{{activity.transportdistance}} km</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-card mb-3 card">
+                        <div class="card-body"><h5 class="card-title">Beschrijving</h5>
+                            <p>{{activity.activitydescription}}</p>
+                        </div>
+                        <div class="card-body"><h5 class="card-title">Gebruikte materialen</h5>
+                            <p>{{activity.usedmaterials}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card  widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Uurkost</div>
+                                            <div class="widget-subheading">&euro;{{activity.cost }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card  widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Transportkost</div>
+                                            <div class="widget-subheading">&euro;{{activity.transportcost }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card  widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Totale kost</div>
+                                            <div class="widget-subheading">&euro;{{activity.transportcost + activity.cost }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ path('admin-activity-edit', {'id': activity.id}) }}"><button class="mb-2 mr-2 btn btn-primary">gegevens aanpassen</button></a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

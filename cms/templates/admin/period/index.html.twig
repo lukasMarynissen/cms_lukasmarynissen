@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Recente Periodes{% endblock %}
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' with {'username': 'username'} %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-user">
+                                    </i>
+                                </div>
+                                <div>Recente Periodes
+                                    <div class="page-title-subheading">Hier ziet u de meest recent aangemaakte periodes en hun status.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">
+                                    Aangemaakte periodes
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Klant</th>
+                                            <th>Periode</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Actie</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% if periods %}
+                                            {% for period in periods %}
+                                                {% include 'partials/period-bar.html.twig' with {'period': period} %}
+                                            {% endfor %}
+                                        {%  endif %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# <a href="{{ path('admin-customer-edit', {'id': customer.id}) }}"><button class="mb-2 mr-2 btn btn-primary">gegevens aanpassen</button></a> #}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

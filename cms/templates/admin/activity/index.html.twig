@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}Alle activiteiten{% endblock %}
+
+
+
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-users">
+                                    </i>
+                                </div>
+                                <div>Alle activiteiten
+                                    <div class="page-title-subheading">Hieronder ziet u een lijst van alle activiteiten van week {{ weekNr }} voor alle klanten.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                        {% if activities %}
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-header">
+                                            Week {{ weekNr }}
+                                            <br />
+                                            Maandag {{ thisMonday | date("d-m-Y") }} - Zondag {{ thisSunday | date("d-m-Y") }}
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">Medewerker</th>
+                                                    <th>Klant</th>
+                                                    <th class="">Kost</th>
+                                                    <th class="text-center">Actie</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="table-divider"> <td>Maandag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 1 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Dinsdag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 2 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Woensdag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 3 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Donderdag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 4 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Vrijdag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 5 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Zaterdag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 6 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                <tr class="table-divider"> <td>Zondag</td> <td></td> <td></td> <td></td></tr>
+                                                {% for activity in activities %}
+                                                    {% if activity.weekday == 7 %}
+                                                        {% include 'partials/activity-bar.html.twig' with {'activity': activity} %}
+                                                    {%  endif %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        {% endif %}
+
+
+                    <a href="{{ path('admin-activity-new') }}"><button class="mb-2 mr-2 btn btn-primary">Nieuwe activiteit toevoegen</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

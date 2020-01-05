@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}Nieuwe activiteit toevoegen{% endblock %}
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-user-edit">
+                                    </i>
+                                </div>
+                                <div>Nieuwe activiteit toevoegen
+                                    <div class="page-title-subheading">Hier kan u een nieuwe activiteit toevoegen
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                            <div class="errors">
+                                {{ form_errors(form) }}
+                            </div>
+
+                            <div class="form-row">
+                                <div class="position-relative form-group col-md-6">
+                                    {{ form_label(form.transport_distance, "verplaatsingsafstand") }}
+                                    <div class="input-group">{{ form_widget(form.transport_distance) }}
+                                        <div class="input-group-append"><span class="input-group-text">km</span></div>
+                                    </div>
+                                </div>
+                                <div class="position-relative form-group col-md-6">
+                                    {{ form_label(form.transport_distance, "pauze") }}
+                                    <div class="input-group">{{ form_widget(form.break_length) }}
+                                        <div class="input-group-append"><span class="input-group-text">minuten</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.user, "Werknemer") }}
+                                {{ form_widget(form.user) }}
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.customer, "Klant") }}
+                                {{ form_widget(form.customer) }}
+                            </div>
+
+                            <div class="form-row">
+                                <div class="position-relative form-group col-md-6">
+                                    {{ form_label(form.start_time, "Start werken") }}
+                                    {{ form_widget(form.start_time) }}
+                                </div>
+                                <div class="position-relative form-group col-md-6">
+                                    {{ form_label(form.end_time, "Einde werken") }}
+                                    {{ form_widget(form.end_time) }}
+                                </div>
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.used_materials, "Gebruikte materialen") }}
+                                {{ form_widget(form.used_materials) }}
+                            </div>
+                            <div class="position-relative form-group">
+                                {{ form_label(form.activity_description, "Beschrijving activiteit") }}
+                                {{ form_widget(form.activity_description) }}
+                            </div>
+
+                            {{ form_row(form.save, { 'label': 'activiteit opslaan' }) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {#   <a href="{{ path('admin-worker-delete', {'id': worker.id}) }}"><button type="button" class="btn mr-2 mb-2 btn-danger">Klantaccount Verwijderen</button></a> #}
+                            {#  <a href="{{ path('admin-worker-change-password', {'id': worker.id}) }}"><button type="button" class="btn mr-2 mb-2 btn-warning">Wachtwoord veranderen</button></a> #}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}

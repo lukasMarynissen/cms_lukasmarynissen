@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block title %}Periodezicht{% endblock %}
+
+
+
+
+{% block body %}
+    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
+
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        {% include 'partials/adminHeader.html.twig' %}
+        <div class="app-main">
+            {% include 'partials/adminSidebar.html.twig' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fas fa-users">
+                                    </i>
+                                </div>
+                                <div>{{ period.customer.companyname }}
+                                    <div class="page-title-subheading"> Periode van {{ period.starttime | date("d-m-Y") }} tot {{ period.endtime | date("d-m-Y")  }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card main-card mb-3 widget-content">
+                        <div class="widget-content-outer">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">Status</div>
+                                    <div class="">
+                                        {%  if period.published %}
+                                            {% if period.confirmed %}
+                                                <div class="badge badge-success">Bevestigd</div>
+                                            {%  else %}
+                                                <div class="badge badge-warning">Nog niet bevestigd</div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="badge badge-danger">Niet gepubliceerd</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        {% if activities %}
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-header">
+                                            {{period.customer.companyname}}
+                                            <br />
+                                            {{ period.starttime | date("d-m-Y")  }} - {{ period.endtime | date("d-m-Y")  }}
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">Medewerker</th>
+                                                    <th>Tijd</th>
+                                                    <th class="">Kost</th>
+                                                    <th class="text-center">Actie</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for activity in activities %}
+                                                        {% include 'partials/period-activity-bar.html.twig' with {'activity': activity} %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Totale uurkosten</div>
+                                            <div class="widget-subheading">&euro;{{ totalHourlyCost }}</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Totale transportkosten</div>
+                                            <div class="widget-subheading">&euro;{{ totalTransportCost }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Totale Kost</div>
+                                            <div class="widget-subheading">&euro;{{ totalCost }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% if comments %}
+                        <div class="card-title">
+                            Opmerkingen
+                        </div>
+
+
+                            {% for comment in comments %}
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">
+                                    {{comment.author.firstname}} {{comment.author.name}}
+                                    <br />
+
+                                        schreef op {{comment.createdat | date("d/m/Y")}} :
+
+                                </div>
+
+                                <div class="widget-content">
+                                    {{comment.content}}
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                    {% endif %}
+
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                            <div class="errors">
+                                {{ form_errors(form) }}
+                            </div>
+
+                            <div class="position-relative form-group hidden">
+                                {{ form_label(form.created_at, "Opmerking toevoegen") }}
+                                {{ form_widget(form.created_at) }}
+                            </div>
+
+                            <div class="position-relative form-group">
+                                {{ form_label(form.content, "Opmerking toevoegen") }}
+                                {{ form_widget(form.content) }}
+                            </div>
+
+                            <div class="position-relative form-group hidden">
+                                {{ form_label(form.author, "Reactie") }}
+                                {{ form_widget(form.author) }}
+                            </div>
+
+                            <div class="position-relative form-group hidden">
+                                {{ form_label(form.period, "Reactie") }}
+                                {{ form_widget(form.period) }}
+                            </div>
+
+
+
+                            {{ form_row(form.save, { 'label': 'bericht versturen' }) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+
+                        <a href="{{ path('admin-period-publish', {'id': period.id}) }}"><button class="mb-2 mr-2 btn {% if period.published %} btn-warning {% else %} btn-primary {% endif %}">{% if period.published %} Periode depubliceren {% else %} Periode versturen naar klant {% endif %}</button></a>
+                        <a href="{{ path('admin-period-edit', {'id': period.id}) }}"><button class="mb-2 mr-2 btn btn-primary">Periode wijzigen</button></a>
+                        <a href="{{ path('admin-period-detail-xls', {'id': period.id}) }}"><button class="mb-2 mr-2 btn btn-primary">Excelbestand downloaden</button></a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('scripts/architect.js') }}"></script>
+{% endblock %}
