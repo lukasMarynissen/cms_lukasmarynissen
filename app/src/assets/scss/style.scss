@@ -1,0 +1,400 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline; }
+  
+  /* HTML5 display-role reset for older browsers */
+  
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block; }
+  
+  body {
+    line-height: 1; }
+  
+  ol, ul {
+    list-style: none; }
+  
+  blockquote, q {
+    quotes: none; }
+  
+  blockquote {
+    &:before, &:after {
+      content: '';
+      content: none; } }
+  
+  q {
+    &:before, &:after {
+      content: '';
+      content: none; } }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0; }
+
+
+$text-color: #1E223A;
+$text-color-light: rgb(121, 124, 142);
+$window-color: #ffffff;
+$background-color: #EBEFF6;
+$green: #496E2E;
+
+$text-color: #021859;
+$green: #F25CA2;
+$lighter-blue: #032CA6;
+
+$text-color: #253B59;
+
+$green: #24A6A6;
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
+
+body {
+    background-color: $background-color;
+}
+
+li, p, h1, h2, h3, h4, h5, h6, a, label, input {
+    color: $text-color;
+    font-family: 'Lato', sans-serif;
+}
+
+.container {
+    background-color: $background-color;
+    min-height: 100vh;
+}
+.main {
+    padding-top: 140px;
+    background-color: $background-color;
+}
+
+//TD old
+.header {
+    position: fixed;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 50px;
+    background-color: $background-color;
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+
+   //box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.28);
+}
+
+.header-left {
+    display: flex;
+    flex-direction: row;
+    p {
+        margin-left: 10px;
+    }
+}
+
+.header-right {
+    display: flex;
+    flex-direction: row;
+    p {
+        margin-left: 10px;
+    }
+}
+
+.page-header {
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    height: 90px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.28);
+    border-radius: 0px 0px 15px 15px;
+    h3 {
+        font-weight: bolder;
+    }
+    &.small {
+        height:50px;
+    }
+}
+
+.page-title {
+    background-color: $text-color;
+    font-style: bold;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    //align-items: center;
+    height: 35px;
+    padding-top: 15px;
+    h3 {
+        color: $window-color;
+    }
+}
+
+.tabs {
+    background-color: $text-color;
+    font-style: bold;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    
+    ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: stretch;
+        .tab {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: $window-color;
+
+            &.router-link-exact-active {
+                text-decoration: underline;
+            }
+        }
+        .divider {
+            width: 1px;
+            background-color: $window-color;
+            margin: 12px 0px;
+        }
+    }
+}
+
+.activities {
+   /* &:last-child {
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.28);
+    }
+    */
+}
+
+.activities-options {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    a {
+        font-size: 35px;
+        text-decoration: none;
+    }
+
+    .small {
+        font-size: 15px;
+    }
+}
+
+.activity-bar {
+    width: 100%;
+    background-color: $window-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    text-decoration: none;
+    //box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.28);
+    &:not(:first-child){
+        box-shadow: inset 0px 4px 5px -6px;
+    }
+    
+
+
+    .activity-bar-title {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+        p {
+            font-weight: bold;
+            text-decoration: none;
+        }
+    }
+    .activity-bar-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+        div {
+            width: 30%;
+            margin-left: 1.5%;
+            margin-right: 1.5%;
+            :last-child {
+                margin-top: 5px;    
+            }
+        }
+    }
+}
+
+.text-light {
+    color: $text-color-light;
+}
+
+.add-button {
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    background-color: $green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        color: white;
+        font-size: 3rem;
+    }
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0px;
+    border-radius: 15px 15px 0px 0px;
+    width: 100%;
+    height: 60px;
+    background-color: $text-color;
+    display: flex;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
+    ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        a {
+            color: $window-color;
+        }
+    }   
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: $window-color;
+    margin: 25px;
+    &.fullwidth {
+        margin: 25px 0px;
+    }
+}
+
+.card-text-large {
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.message {
+    background-color: $window-color;
+    display: flex;
+    padding: 20px;
+    margin: 25px;
+}
+
+.bottom-padding {
+    height:300px;
+}
+
+form {
+    display: flex;
+        flex-direction: column;
+
+    width: 100%;
+
+    .form-div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+
+
+        label {
+
+        }
+
+        input, select {
+            margin-top: 5px;
+            width: 100%;
+            height: 35px;
+
+        }
+    }
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    div {
+        margin: 5px;
+    }
+    p {
+        margin-left: 10px;
+    }
+}
+
+#description {
+    height: 50px;
+}
+
+input[type=submit] {
+    background: $text-color; 
+    color: $window-color;
+    border:0 none;
+}
+
+.widget-heading {
+    margin-bottom: 0;
+}
+
+.error-bar {
+
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+
+    &.content {
+        justify-content: space-between;
+    }
+}
+
+.col, .col-sm-6 {
+    width: 100%;
+}
+
+.detail {
+    padding: 50px;
+    .row {
+        margin-bottom: 30px;
+    }
+}
+
+.a {
+    text-decoration: none;
+}
